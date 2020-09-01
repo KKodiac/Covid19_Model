@@ -117,15 +117,17 @@ class data_collect:
         return krdata
 
     
-
+    def showData(self):
+        country_list = self.__get_country_list()
+        
+        for country in country_list:
+            f = open("Data/{}.txt".format(country))
+            data = f.readlines()[1]
+            dl = data.split(' ')
+            plt.plot(dl)
+        plt.show()
 
 dc = data_collect()
 
-dc.getData()
-
-krf = open("Data/Republic of Korea.txt")
-kr = krf.read()
-# print(kr.split(" "))
-othf = open("Data/France.txt")
-oth = othf.read()
-# print(oth.split(" "))?
+# dc.getData()
+dc.showData()
