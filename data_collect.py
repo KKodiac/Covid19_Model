@@ -26,12 +26,19 @@ class data_collect:
         
         return tmp
 
+    def scrapeData(self):
+        req = requests.get(self.datl)
+        with open(self.datl, 'w+') as file:
+            file.write(req.text)
+            file.close()
+
     def getData(self):
         try:
             makedirs("Data/")
         except FileExistsError:
             pass
         
+        self.scrapeData()
         
         country_list = self.__get_country_list()
         df = pandas.read_csv(self.datf)
