@@ -13,12 +13,13 @@ class data_collect:
     ):
         self.datf = DAT_F
         self.datl = DAT_L
-        self.dr = csv.DictReader(open(self.datf, encoding='utf-8'))
+        self.dr = csv.DictReader(open(self.datf, 'w+',encoding='utf-8'))
         self.pdF = open("csvData.csv", encoding='utf-8')
         self.pdDict = csv.DictReader(self.pdF)
         self.country_data = []
 
-    def __get_country_list(self) -> List:
+    
+    def get_country_list(self) -> List:
         tmp = [] 
         for row in self.dr:
             if(row[" Country"] not in tmp):
@@ -28,7 +29,7 @@ class data_collect:
 
     def scrapeData(self):
         req = requests.get(self.datl)
-        with open(self.datl, 'w+') as file:
+        with open(self.datf, 'w+') as file:
             file.write(req.text)
             file.close()
 
@@ -40,7 +41,7 @@ class data_collect:
         
         self.scrapeData()
         
-        country_list = self.__get_country_list()
+        country_list = self.get_country_list()
         df = pandas.read_csv(self.datf)
         for country in country_list:
             f = open("Data/{}.txt".format(country), 'w+', encoding='utf-8')
@@ -116,18 +117,33 @@ class data_collect:
         
         return krdata
 
-    
-    def showData(self):
-        country_list = self.__get_country_list()
+    def getKrDateSpectrum(self, df):
+        krdata = []
         
-        for country in country_list:
-            f = open("Data/{}.txt".format(country))
-            data = f.readlines()[1]
-            dl = data.split(' ')
-            plt.plot(dl)
+        for row in df.values:
+            # print(row)
+            if(row[2] == "Republic of Korea"):
+                krdata.append(row[0])
+        
+        return krdata
+
+    def showData(self):
+        # country_list = self.get_country_list()
+        
+        # for country in country_list:
+        #     f = open("Data/{}.txt".format(country), encoding='utf-8')
+        #     data = f.readlines()[1]
+        #     dl = data.split(' ')
+        #     plt.plot(dl)
+        df = pandas.read_csv(self.datf)
+        list_date = self.getKrDateSpectrum(df)
+        f = open("Data/Republic of Korea.txt", encoding='utf-8')
+        data = f.readlines()[1]
+        
+        plt.plot(list_date,data.split(' ')[:len(list_date)])
         plt.show()
 
 dc = data_collect()
 
-# dc.getData()
+dc.getData()
 dc.showData()

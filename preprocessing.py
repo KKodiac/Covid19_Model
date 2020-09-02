@@ -9,25 +9,6 @@ from sklearn.preprocessing import Normalizer
 import joblib
 
 
-def date_to_number(date):
-    # 글자로 표현된 날짜를 숫자로 바꾼다.
-    # ex) 'Dec/1' -> '12/1'
-    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    for i, month in enumerate(months):
-        date = date.replace(month, str(i+1))
-    return date
-
-
-def load_one(path):
-    # path의 txt 파일 데이터를 가져온다.
-    with open(path, 'r', encoding='utf8') as f:
-        d1 = f.read().split(' ')
-
-    d1 = d1[d1.count('nan'):]
-    d1 = list(map(float, d1))
-    return d1
-
-
 def load(directory='data'):
     # directory의 txt 파일 데이터들을 가져온다.
     data = []
