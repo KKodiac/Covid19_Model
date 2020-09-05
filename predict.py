@@ -26,7 +26,7 @@ def forecast(x, days=10):
 
 def load_korea_data():
     # 대한민국 데이터를 가져온다.
-    data = pre.load_one('south-korea_data.txt')
+    data = pre.load_one('Data/Republic of Korea.txt')
     x, y = pre.labeling(data, sight=opt.SIGHT, y_n=opt.Y_N)
     x = x.reshape((-1, opt.SIGHT, 1))
     full_x = np.array([data[i:opt.SIGHT + i] for i in range(len(data) - opt.SIGHT + 1)]).reshape((-1, opt.SIGHT, 1))
