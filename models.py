@@ -4,7 +4,6 @@
 import tensorflow as tf
 import options as opt
 
-
 def build_model():
     # 모델을 반환한다.
     model = tf.keras.Sequential([
@@ -16,7 +15,7 @@ def build_model():
     ])
 
     optim = tf.keras.optimizers.Adam(lr=opt.lr)
-    model.compile(optimizer=optim, loss="mse")  # regression에 유리한 MSE loss 사용
+    model.compile(optimizer=optim, loss="mse", metrics=['accuracy'])  # regression에 유리한 MSE loss 사용
 
     return model
 

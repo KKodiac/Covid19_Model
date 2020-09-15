@@ -10,7 +10,7 @@ tf.get_logger().setLevel('ERROR')
 
 # 데이터 가져오기
 xtrain, xtest, ytrain, ytest = joblib.load('traintest.joblib')
-
+print(xtest, ytest)
 # 모델 가져오기
 model = build_model()
 try:
@@ -21,7 +21,7 @@ except:
 
 # 학습
 model.fit(xtrain, ytrain, validation_data=[xtest, ytest],
-        epochs=opt.EPOCHS, batch_size=opt.BATCH_SIZE, verbose=1, shuffle=True)
+        epochs=opt.EPOCHS, batch_size=opt.BATCH_SIZE, verbose=1, shuffle=False)
 
 # 모델 저장
 model.save_weights('weights.h5')
