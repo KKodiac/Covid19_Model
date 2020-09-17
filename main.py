@@ -1,10 +1,12 @@
 from data_collect import *
 from models import *
-from preprocessing import load, labeling, reshape, train_test_split
+from preprocessing import load, labeling, train_test_split
 import train
 from predict import *
 import options as opt
 import joblib
+from numpy import reshape
+
 
 if __name__ == "__main__":
     pre_dat = data_collect()

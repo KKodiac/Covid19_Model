@@ -21,7 +21,7 @@ def train():
         pass
 
     # 학습
-    model.fit(xtrain, ytrain, validation_data=[xtest, ytest],
+    model.fit(xtrain, ytrain, validation_data=[xtest],
             epochs=opt.EPOCHS, batch_size=opt.BATCH_SIZE, verbose=1, shuffle=False)
 
     # 모델 저장

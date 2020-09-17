@@ -73,7 +73,7 @@ if __name__ == "__main__":
     plt.plot(range(len(x)+opt.SIGHT+opt.Y_N+opt.POS, last_x),
              np.append([y[opt.POS][-1]], forecast_result), color='g', alpha=0.7)  # 'forecast'
 
-    plt.title('As of 2020-08-26')
+    plt.title(datetime.date())
     plt.xlabel('Date')
     plt.ylabel('Cases')
     plt.xticks(range(0, last_x, 40), dates)  # x축 Date

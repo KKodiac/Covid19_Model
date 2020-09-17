@@ -6,7 +6,7 @@ Y_N = 5 # 모델이 한 번에 며칠 후의 확진자 수까지 예측해야 �
 TEST_SIZE = 0.2  # 테스트 데이터 비율
 
 # 학습
-EPOCHS = 100
+EPOCHS = 20
 BATCH_SIZE = 256
 lr = 0.001
 
