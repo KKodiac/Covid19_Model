@@ -27,6 +27,7 @@ def forecast(x, days=10):
 def load_korea_data():
     # 대한민국 데이터를 가져온다.
     # data = pre.load_one('Data/Republic of Korea.txt')
+    # 경기도 데이터 셋 파싱
     data = pre.load_one('GyeonggiData/core_data.txt')
     x, y = pre.labeling(data, sight=opt.SIGHT, y_n=opt.Y_N)
     x = x.reshape((-1, opt.SIGHT, 1))
@@ -74,7 +75,7 @@ if __name__ == "__main__":
     plt.plot(range(len(x)+opt.SIGHT+opt.Y_N+opt.POS, last_x),
              np.append([y[opt.POS][-1]], forecast_result), color='g', alpha=0.7)  # 'forecast'
 
-    plt.title("Updated as of 9/18")
+    plt.title("Updated as of 9/22")
     plt.xlabel('Date')
     plt.ylabel('Cases')
     plt.xticks(range(0, last_x, 40), dates)  # x축 Date

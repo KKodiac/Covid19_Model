@@ -77,7 +77,7 @@ class data_collect:
                 b_data.insert(0,0)
         elif(len(b_data)>krdatlen):
             b_data = b_data[(len(b_data)-krdatlen):]
-        pd = csv.DictReader(open("csvData.csv", encoding='utf-8'))
+        pd = csv.DictReader(open("population_density.csv", encoding='utf-8'))
 
         # print(country, b_data)
         for row in pd:
